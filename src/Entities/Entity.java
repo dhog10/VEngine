@@ -1,9 +1,8 @@
 package Entities;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import Utility.IMaterial;
+import Utility.Material;
 
 import Main.Game;
 import Math.Vector2;
@@ -22,7 +21,7 @@ public abstract class Entity {
 	private ArrayList<CollisionData> collisionData = new ArrayList<CollisionData>();
 
 	// Material stuff
-	private IMaterial material;
+	private Material material;
 	private boolean drawMaterial = true;
 	private float materialScale = 1;
 	private boolean centerMaterial = true;
@@ -273,7 +272,7 @@ public abstract class Entity {
 		return material.getMaterialString();
 	}
 
-	public IMaterial getMaterialObject(){
+	public Material getMaterialObject(){
 		return material;
 	}
 

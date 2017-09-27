@@ -16,6 +16,7 @@ public class LevelManager {
 
         registerLevel(new TestLevel());
         registerLevel(new TestLevel2());
+        registerLevel(new MainMenuLevel());
     }
 
     private void loadLevel(String name){
@@ -23,12 +24,13 @@ public class LevelManager {
 
         // Delete current level
         game.handler.removeWorldEntities();
+        game.getHUD().removeWorldElements();
 
         for(Level l : levels){
             if(l.getName().equals(name)){
                 level = l;
-                level.initialize();
                 level.setGame(game);
+                level.initialize();
                 level.spawn();
             }
         }
@@ -39,7 +41,7 @@ public class LevelManager {
         loadLevel(level);
     }
 
-    public void registerLevel(Level level){
+    public Level registerLevel(Level level){
 
         // Remove level if it has the same name as the new level
         if(levelExists(level.getName())){
@@ -54,6 +56,7 @@ public class LevelManager {
         }
 
         levels.add(level);
+        return level;
     }
 
     public Level getActiveLevel(){

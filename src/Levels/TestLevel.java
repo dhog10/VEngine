@@ -5,6 +5,8 @@ import java.awt.Color;
 import Entities.Entity;
 import Entities.PhysicsCircle;
 import Entities.PhysicsSquare;
+import GUI.GUIButton;
+import GUI.GUIElement;
 import Main.Game;
 import Utility.Timer;
 
@@ -19,7 +21,19 @@ public class TestLevel extends Level{
 		System.out.println("custom on load");
 		setBackgroundColor(new Color(15,15,15));
 		Game.config.gravity = 600;
-		
+
+		// Test HUD elements
+		GUIElement button = getGame().getHUD().createGUIElement(new GUIButton(1000, 300, 100, 30), true);
+		button.setText("Test button");
+		button.setCenterText(true);
+		button.setDraggable(true);
+		button.setOnClickedCode(() -> {
+			button.setText("Clicked");
+			Timer.simple(1, () -> {
+				button.setText("Test button");
+			});
+		});
+		// Test entities
 		Entity e = addEntity(new PhysicsCircle());
 		e.setSize(50, 50, true);
 		e.setPos(400,  300);

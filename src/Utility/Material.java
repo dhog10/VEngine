@@ -13,7 +13,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class IMaterial {
+public class Material {
 
     private BufferedImage[] frames;
     private String materialString;
@@ -23,14 +23,14 @@ public class IMaterial {
     private int currentFrame = 0;
     private long lastFrameAdvance = 0;
 
-    public IMaterial(BufferedImage material, String materialString){
+    public Material(BufferedImage material, String materialString){
         String extension = (materialString.substring(materialString.indexOf('.') + 1,materialString.length()));
         this.materialExtension = extension;
 
         setupBufferedImages(material, materialString, false);
     }
 
-    public IMaterial(BufferedImage material, String materialString, boolean animatedTileSet){
+    public Material(BufferedImage material, String materialString, boolean animatedTileSet){
         String extension = (materialString.substring(materialString.indexOf('.') + 1,materialString.length()));
         this.materialExtension = extension;
 

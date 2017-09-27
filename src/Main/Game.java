@@ -65,6 +65,7 @@ public class Game implements Runnable{
 				delta = (float) ((curtime - lastTick) / 1000000) / 1000;
 
 				handler.tick();
+				hud.tick();
 				input.tick();
 
 				lastTick = curtime;
@@ -119,7 +120,7 @@ public class Game implements Runnable{
 			}*/
 			
 			
-			levelManager.setLevel("Test Level");
+			levelManager.setLevel("Main Menu");
 		}
 	}
 

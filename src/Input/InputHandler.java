@@ -14,6 +14,7 @@ public class InputHandler {
     protected boolean mouseOnScreen = false;
     protected boolean mouseDragged = false;
     protected int mouseX = 0, mouseY = 0;
+    protected int lastMouseX = 0, lastMouseY = 0;
     protected int mouseDragX = 0, mouseDragY = 0;
 
     private InputMouseMotionListener mouseMotionListener;
@@ -26,6 +27,8 @@ public class InputHandler {
     }
 
     public void tick(){
+        lastMouseX = mouseX;
+        lastMouseY = mouseY;
         mouseClicked = false;
     }
 
@@ -56,6 +59,10 @@ public class InputHandler {
     public int getMouseY(){
         return mouseY;
     }
+
+    public int getLastMouseX() { return lastMouseX; }
+
+    public int getLastMouseY() { return lastMouseY; }
 
     public int getMouseDragX(){
         return mouseDragX;

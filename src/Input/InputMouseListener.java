@@ -21,6 +21,8 @@ public class InputMouseListener implements MouseListener{
 
     @Override
     public void mousePressed(MouseEvent e) {
+        inputHandler.mouseDragX = e.getX() - 3;
+        inputHandler.mouseDragY = e.getY() - 26;
         inputHandler.mouseDown = true;
     }
 
@@ -29,6 +31,7 @@ public class InputMouseListener implements MouseListener{
         inputHandler.mouseX = e.getX() - 3;
         inputHandler.mouseY = e.getY() - 26;
         inputHandler.mouseDown = false;
+        inputHandler.mouseDragged = false;
     }
 
     @Override

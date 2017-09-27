@@ -11,28 +11,28 @@ import java.util.HashMap;
 public class MaterialManager {
 
     private ArrayList<SpriteSheet> spriteSheets = new ArrayList<SpriteSheet>();
-    private HashMap<String, IMaterial> materialMap = new HashMap<>();
-    private IMaterial errorMaterial;
+    private HashMap<String, Material> materialMap = new HashMap<>();
+    private Material errorMaterial;
 
     public MaterialManager(){
         try {
             String error_dir = Game.config.resourceDirectory + "/" + Game.config.errorMaterial;
             BufferedImage material = ImageIO.read(Game.class.getResource(error_dir));
-            errorMaterial = new IMaterial(material, Game.config.errorMaterial);
+            errorMaterial = new Material(material, Game.config.errorMaterial);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private IMaterial getMaterialFromSpritesheets(String key){
+    private Material getMaterialFromSpritesheets(String key){
         return null;
     }
 
-    private IMaterial loadMaterial(String key, boolean animatedTileSet, int fps){
-        IMaterial imaterial;
+    private Material loadMaterial(String key, boolean animatedTileSet, int fps){
+        Material imaterial;
         try {
             BufferedImage material = ImageIO.read(Game.class.getResource(Game.config.resourceDirectory + "/" + key));
-            imaterial = new IMaterial(material, key, animatedTileSet);
+            imaterial = new Material(material, key, animatedTileSet);
             imaterial.setFPS(fps);
             return imaterial;
         } catch (Exception e) {
@@ -45,8 +45,8 @@ public class MaterialManager {
         }
     }
 
-    public IMaterial getMaterial(String key, boolean animatedTileSet, int fps){
-        IMaterial imaterial;
+    public Material getMaterial(String key, boolean animatedTileSet, int fps){
+        Material imaterial;
         if(materialMap.containsKey(key)){
             return materialMap.get(key);
         }else{
@@ -56,7 +56,7 @@ public class MaterialManager {
         }
     }
 
-    public IMaterial getErrorMaterial(){
+    public Material getErrorMaterial(){
         return errorMaterial;
     }
 }
