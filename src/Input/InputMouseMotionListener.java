@@ -22,7 +22,7 @@ public class InputMouseMotionListener implements MouseMotionListener{
     @Override
     public void mouseMoved(MouseEvent e) {
         inputHandler.mouseMoved = true;
-        inputHandler.mouseX = e.getX();
-        inputHandler.mouseY = e.getY();
+        inputHandler.mouseX = e.getX() - 3;
+        inputHandler.mouseY = e.getY() - 26;
     }
 }

@@ -3,6 +3,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import GUI.HUD;
 import Input.InputHandler;
+import Levels.LevelManager;
 import Utility.MaterialManager;
 import javafx.scene.paint.Material;
 import org.omg.Messaging.SyncScopeHelper;
@@ -24,7 +25,7 @@ public class Game implements Runnable{
 	public static InputHandler input;
 	private HUD hud;
 	public static GameFrame frame;
-	private static Level level;
+	private static LevelManager levelManager;
 	public Handler handler;
 	public static Config config;
 	private static MaterialManager materialManager;
@@ -55,21 +56,21 @@ public class Game implements Runnable{
 	public static float delta = 0;
 	
 	public void run() {
-		
+
 		lastTick = System.nanoTime();
-		
-		while(running) {
+
+		while (running) {
 			curtime = System.nanoTime();
-			if(targetTPS == -1 || curtime - lastTick >= targetTpsNano) {
+			if (targetTPS == -1 || curtime - lastTick >= targetTpsNano) {
 				delta = (float) ((curtime - lastTick) / 1000000) / 1000;
-				
+
 				handler.tick();
 				input.tick();
 
 				lastTick = curtime;
 				ticks++;
 
-				if(curtime - lastSecond >= 1000000000) {
+				if (curtime - lastSecond >= 1000000000) {
 					lastSecond = curtime;
 					tps = ticks;
 					ticks = 0;
@@ -78,15 +79,8 @@ public class Game implements Runnable{
 		}
 	}
 	
-	public void setLevel(Level level) {
-		this.level = level;
-		level.setGame(this);
-		handler.removeWorldEntities();
-		level.spawn();
-	}
-	
 	public Level getLevel() {
-		return level;
+		return levelManager.getActiveLevel();
 	}
 
 	public int getTargetTPS() {
@@ -104,6 +98,7 @@ public class Game implements Runnable{
 	public void start() {
 		config = new Config();
 		materialManager = new MaterialManager();
+		levelManager = new LevelManager(this);
 		handler = new Handler(this, entityProcessorCount);
 		input = new InputHandler(this);
 		hud = new HUD(this);
@@ -124,10 +119,10 @@ public class Game implements Runnable{
 			}*/
 			
 			
-			setLevel(new TestLevel());
+			levelManager.setLevel("Test Level");
 		}
 	}
-	
+
 	public void stop() {
 		running = false;
 	}
@@ -157,6 +152,9 @@ public class Game implements Runnable{
 		return materialManager;
 	}
 
+	public LevelManager getLevelManager(){
+		return levelManager;
+	}
 	public static void main(String[] args) {
 		System.setProperty("sun.java2d.opengl","True");
 		Game game = new Game();

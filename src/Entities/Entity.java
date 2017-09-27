@@ -1,6 +1,6 @@
 package Entities;
 
-import java.awt.Graphics;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import Utility.IMaterial;
@@ -66,7 +66,7 @@ public abstract class Entity {
 
 	public abstract void onCollide(CollisionData collisionData);
 	
-	public void render(Graphics g) {
+	public void render(Graphics2D g) {
 		if(drawMaterial && material != null){
 			if(centerMaterial) {
 				material.draw((int) getDrawPosX() - (int)(((getWidth() * materialScale) - getWidth()) / 2), (int) getDrawPosY() - (int)(((getHeight() * materialScale) - getHeight()) / 2), (int) (getWidth() * materialScale), (int) (getHeight() * materialScale), g);
@@ -77,7 +77,7 @@ public abstract class Entity {
 		draw(g);
 	}
 
-	public abstract void draw(Graphics g);
+	public abstract void draw(Graphics2D g);
 
 	private void registerMove() {
 		moved = true;

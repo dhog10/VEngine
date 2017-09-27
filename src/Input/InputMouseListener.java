@@ -26,6 +26,8 @@ public class InputMouseListener implements MouseListener{
 
     @Override
     public void mouseReleased(MouseEvent e) {
+        inputHandler.mouseX = e.getX() - 3;
+        inputHandler.mouseY = e.getY() - 26;
         inputHandler.mouseDown = false;
     }
 

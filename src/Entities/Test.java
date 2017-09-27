@@ -1,7 +1,6 @@
 package Entities;
 
-import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.*;
 
 import Physics.CollisionData;
 import Physics.EnumCollisionGroup;
@@ -41,13 +40,13 @@ public class Test extends Entity{
 	}
 
 	@Override
-	public void render(Graphics g) {
+	public void render(Graphics2D g) {
 		g.setColor(new Color(150,150,150));
 		g.fillRect((int)getPosX(), (int)getPosY(), getWidth(), getHeight());
 	}
 
 	@Override
-	public void draw(Graphics g) {
+	public void draw(Graphics2D g) {
 
 	}
 }

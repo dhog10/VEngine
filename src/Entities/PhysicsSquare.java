@@ -1,8 +1,6 @@
 package Entities;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Point;
+import java.awt.*;
 
 import Main.Game;
 import Math.MathMethods;
@@ -27,7 +25,7 @@ public class PhysicsSquare extends Entity{
 
 	}
 	
-	public void draw(Graphics g) {
+	public void draw(Graphics2D g) {
 		if (Game.config.showCollisionDebug) {
 			if (isColliding()) {
 				g.setColor(new Color(30, 200, 30));

@@ -53,7 +53,7 @@ public class InputHandler {
         return mouseX;
     }
 
-    public int getMousY(){
+    public int getMouseY(){
         return mouseY;
     }
 

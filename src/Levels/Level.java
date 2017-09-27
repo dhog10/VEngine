@@ -15,9 +15,14 @@ public abstract class Level {
 	private ArrayList<Entity> entities = new ArrayList<Entity>();
 	
 	public Level(String name) {
+		this.name = name;
+	}
+
+	public void initialize(){
+		entities.clear();
 		onLoad();
 	}
-	
+
 	public abstract void onLoad();
 	
 	public void spawn() {

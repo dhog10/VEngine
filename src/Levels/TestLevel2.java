@@ -10,7 +10,7 @@ import Main.Game;
 public class TestLevel2 extends Level{
 
 	public TestLevel2() {
-		super("Test Level");
+		super("Test Level 2");
 	}
 	
 	@Override
