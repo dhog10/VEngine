@@ -19,6 +19,7 @@ public abstract class Entity {
 	private boolean colliding = false;
 	private int collideCount = 0;
 	private ArrayList<CollisionData> collisionData = new ArrayList<CollisionData>();
+	private float angle;
 
 	// Material stuff
 	private Material material;
@@ -144,6 +145,13 @@ public abstract class Entity {
 		position.setY(y);
 		registerMove();
 	}
+
+	public void setAngle(float angle){
+		this.angle = (float)Math.toRadians(angle);
+		if(material != null){
+			material.setAngleRadians(this.angle);
+		}
+	}
 	
 	public void setSize(int sizeX, int sizeY) {
 		size.setX(sizeX);
@@ -239,6 +247,10 @@ public abstract class Entity {
 	public float getPosY() {
 		return position.getYFloat();
 	}
+
+	public float getAngle(){return (float)Math.toDegrees(angle); }
+
+	public float getAngleRadians(){ return angle; }
 
 	public float getDrawPosX(){
 		return position.getXFloat() + Game.getCamOffsetX();

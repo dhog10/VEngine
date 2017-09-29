@@ -19,7 +19,7 @@ public class PhysicsCircle extends Entity{
 	}
 
 	public void think(){
-
+		setAngle(getAngle() + 10);
 	}
 
 	public void onCollide(CollisionData collisionData){

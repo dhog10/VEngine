@@ -8,6 +8,7 @@ import javax.imageio.ImageIO;
 import javax.imageio.ImageReader;
 import javax.imageio.stream.ImageInputStream;
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -22,6 +23,7 @@ public class Material {
     private int fps = 30;
     private int currentFrame = 0;
     private long lastFrameAdvance = 0;
+    private float angle = 0;
 
     public Material(BufferedImage material, String materialString){
         String extension = (materialString.substring(materialString.indexOf('.') + 1,materialString.length()));
@@ -76,7 +78,10 @@ public class Material {
         this.materialString = materialString;
     }
 
-    public void draw(int x, int y, int w, int h, Graphics g){
+    public void draw(int x, int y, int w, int h, Graphics2D g){
+        AffineTransform at = new AffineTransform();
+        at.rotate(angle);
+        //g.drawImage(frames[currentFrame], at, null);
         g.drawImage(frames[currentFrame], x, y, w, h, null);
         if(System.currentTimeMillis() - lastFrameAdvance > 1000 / fps) {
             lastFrameAdvance = System.currentTimeMillis();
@@ -95,6 +100,14 @@ public class Material {
         this.fps = fps;
     }
 
+    public void setAngle(float angle){
+        this.angle = (float)Math.toRadians(angle);
+    }
+
+    public void setAngleRadians(float angle){
+        this.angle = angle;
+    }
+
     public String getMaterialString() {
         return materialString;
     }
@@ -109,5 +122,13 @@ public class Material {
 
     public int getFPS(){
         return fps;
+    }
+
+    public float getAngle(){
+        return (float)Math.toDegrees(angle);
+    }
+
+    public float getAngleRadians(){
+        return angle;
     }
 }

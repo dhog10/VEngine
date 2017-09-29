@@ -120,7 +120,7 @@ public class Game implements Runnable{
 			}*/
 			
 			
-			levelManager.setLevel("Main Menu");
+			levelManager.setLevel("Test Level");
 		}
 	}
 
